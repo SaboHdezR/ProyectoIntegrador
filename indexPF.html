@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content= "width=device-width,initial-scale=1.0">
+<title>Proyecto Final</title> <!--Cabeza de la pagina-->
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-database.js"></script>
+</head>
+
+<body background="./imgPF/im1.png"> <!--fondo de pagina-->
+
+<font color="#FFFFFF" face="Comic Sans MS" size=5>
+<p align="center">PROYECTO FINAL</p>
+</font>
+
+<center><!--Tabla1-->
+<table border="0" cellpadding="20">
+
+<tr><!--Columnas del renglon-->
+<td colspan="3">
+<center>
+<font color="#FFFFFF" style="font-size:50">
+Sensores
+</font>
+</center>
+</td>
+</tr>
+
+<tr>
+<td><!--Imagen en cada columna-->
+<center>
+<img src="./imgPF/im2a.png">
+</center>
+</td>
+<td><!--Imagen en cada columna-->
+<center>
+<img src="./imgPF/im2b.png">
+</center>
+</td>
+<td><!--Imagen en cada columna-->
+<center>
+<img src="./imgPF/im3.png">
+</center>
+</td>
+</tr>
+
+<tr>
+<td><!--Imagen en cada columna-->
+<center>
+<font color="#FFFFFF" style="font-size: 20">
+Sensor 1 Potenciometro
+</font>
+</center>
+</td>
+<td><!--Imagen en cada columna-->
+<center>
+<font color="#FFFFFF" style="font-size: 20">
+Sensor 2 Potenciometro
+</font>
+</center>
+</td>
+<td><!--Imagen en cada columna-->
+<center>
+<font color="#FFFFFF" style="font-size: 20">
+Sensor 3 Cruce por cero
+</font>
+</center>
+</td>
+</tr>
+
+</table>
+</center>
+
+<center><!--Tabla2-->
+<table border="0" cellpadding="20">
+
+<tr><!--Columnas del renglon-->
+<td colspan="3">
+<center>
+<font color="#FFFFFF" style="font-size:50">
+Actuadores
+</font>
+</center>
+</td>
+</tr>
+
+<tr>
+<td><!--Imagen en cada columna-->
+<center>
+<img src="./imgPF/im4.png">
+</center>
+</td>
+<td><!--Imagen en cada columna-->
+<center>
+<img src="./imgPF/im4.png">
+</center>
+</td>
+<td><!--Imagen en cada columna-->
+<center>
+<img src="./imgPF/im5.png">
+</center>
+</td>
+</tr>
+
+<tr>
+<td><!--Imagen en cada columna-->
+<center>
+<font color="#FFFFFF" style="font-size: 20">
+Actuador 1 Motor
+</font>
+</center>
+</td>
+<td><!--Imagen en cada columna-->
+<center>
+<font color="#FFFFFF" style="font-size: 20">
+Actuador 2 Motor
+</font>
+</center>
+</td>
+<td><!--Imagen en cada columna-->
+<center>
+<font color="#FFFFFF" style="font-size: 20">
+Actuador 3 LEDs
+</font>
+</center>
+</td>
+</tr>
+
+</table>
+</center>
+
+<font color="#FFFFFF" size=4>
+<p align="center">Estado de Uso</p>
+</font>
+<font color="#FFFFFF" size=3 face="Comic Sans MS" >
+<p align="center">Se encuentra en Modo: <span id="mod"></span></p>
+</font>
+
+<font color="#FFFFFF" size=4>
+<p align="center">Estado Actuadores</p>
+</font>
+<font color="#FFFFFF" size=3 face="Comic Sans MS" >
+<p align="center">Actuador 1: <span id="a1"></span></p>
+<p align="center">Actuador 2: <span id="a2"></span></p>
+<p align="center">LED 1: <span id="a3"></span></p>
+<p align="center">LED 2: <span id="a4"></span></p>
+</font>
+
+</body>
+
+<script>
+  // Import the functions you need from the SDKs you need
+  var firebaseConfig = {
+    apiKey: "AIzaSyBmLa2yc4_Ib0QSwFWrSjm6oAVUsoHOZE8",
+    authDomain: "iot-protocolos.firebaseapp.com",
+    databaseURL: "https://iot-protocolos-default-rtdb.firebaseio.com",
+    projectId: "iot-protocolos",
+    storageBucket: "iot-protocolos.appspot.com",
+    messagingSenderId: "923745142769",
+    appId: "1:923745142769:web:e9bfaab60a1fb641352650",
+    measurementId: "G-BEKMXGM4DE"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var database = firebase.database().ref("/iot-protocolos-default-rtdb/-MpU7cZ8OyGupxGZmbMW");
+  
+  database.on('value', (snapshot) => {
+        var a1_val = snapshot.val().A1;
+        var a2_val = snapshot.val().A2;
+        var a3_val = snapshot.val().A3;
+        var a4_val = snapshot.val().A4;
+		var m_val = snapshot.val().Modo;
+        document.getElementById("a1").innerHTML = a1_val;
+        document.getElementById("a2").innerHTML = a2_val;
+        document.getElementById("a3").innerHTML = a3_val;
+        document.getElementById("a4").innerHTML = a4_val;
+		document.getElementById("mod").innerHTML = m_val;
+  });
+</script>
+
+</html>
